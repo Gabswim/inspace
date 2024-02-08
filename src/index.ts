@@ -15,12 +15,16 @@ type Inhabitants = {
   people: People[]
 }
 
+
+
 async function getInhabitantsOfSpace() {
   const response = await axios.get<Inhabitants>("http://api.open-notify.org/astros.json");
   return response.data;
 }
 
 clear();
+// log argurments parse to console.log
+console.log(`ARGS: ${[...process.argv]}`);
 console.log(chalk.yellowBright(figlet.textSync('InSpace', { horizontalLayout: 'full' })));
 const inhabitants = await getInhabitantsOfSpace();
 console.log(chalk.blue(`There is currently ${inhabitants.number} people in space`));
